@@ -1,0 +1,12 @@
+.signin {
+    align-content: center;
+}
+
+#button {
+    font: bold 12px;
+    text-decoration: none;
+    background-color: gray;
+    color: black;
+    padding: 4px 4px 4px 4px;
+    
+}
