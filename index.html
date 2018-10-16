@@ -1,23 +1,34 @@
 <!DOCTYPE html>
 <html>
-    <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title>Blank App</title>
+    <title>OU Clubs</title>
 </head>
 
 <body>
     <script type="text/javascript" src="cordova.js"></script>
-    <h1 style="text-align: center;">
-        OU Clubs
-    </h1>
-    <form method="post" action="login.html">Returning User:
-            <input id="button" type="submit" name="submit" value="Log-In">
-        </form> <br>
-    <form method="post" action="singup.html">First time User: 
-            <input id="button" type="submit" name="submit" value="Create Account">
-        </form> 
-        
-    <p></p>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    
+    <div data-role="header">
+            <h1 style="text-align: center;">
+                WELCOME!
+            </h1>
+        </div>
+        <div data-role="main" class="ui-content">
+            <h1 style="text-align: center;font-size: 90px;">OU CLUBS</h1>
+            <form>Returning User:
+                <a href="login.php"><button>Login</button></a>
+            </form> <br>
+            <form>First time User:
+                <a href="register.php"><button>Create Account</button></a>
+            </form>
+        </div>
+        <div data-role="footer">
+        </div>
 </body>
+
 </html>

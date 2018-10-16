@@ -1,12 +1,14 @@
-.signin {
-    align-content: center;
+button a {
+    text-decoration: none;
 }
 
-#button {
-    font: bold 12px;
-    text-decoration: none;
-    background-color: gray;
-    color: black;
-    padding: 4px 4px 4px 4px;
-    
+.error {
+  width: 92%; 
+  margin: 0px auto; 
+  padding: 10px; 
+  border: 1px solid #a94442; 
+  color: #a94442; 
+  background: #f2dede; 
+  border-radius: 5px; 
+  text-align: left;
 }
