@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3pro.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-amber.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title> Search </title>
+</head>
+<style>
+    nav a {
+        display: block;
+        color: black;
+        padding: 5px;
+        font-size: 18px;
+    }
+    
+    #myInput {
+        background-image: url('/css/searchicon.png');
+        /* Add a search icon to input */
+        background-position: 10px 12px;
+        /* Position the search icon */
+        background-repeat: no-repeat;
+        /* Do not repeat the icon image */
+        width: 100%;
+        /* Full-width */
+        font-size: 16px;
+        /* Increase font-size */
+        padding: 12px 20px 12px 40px;
+        /* Add some padding */
+        border: 1px solid #ddd;
+        /* Add a grey border */
+        margin-bottom: 12px;
+        /* Add some space below the input */
+    }
+    
+    #myTable {
+        border-collapse: collapse;
+        /* Collapse borders */
+        width: 100%;
+        /* Full-width */
+        border: 1px solid #ddd;
+        /* Add a grey border */
+        font-size: 18px;
+        /* Increase font-size */
+    }
+    
+    #myTable th,
+    #myTable td {
+        text-align: left;
+        /* Left-align text */
+        padding: 12px;
+        /* Add padding */
+    }
+    
+    #myTable tr {
+        /* Add a bottom border to all table rows */
+        border-bottom: 1px solid #ddd;
+    }
+    
+    #myTable tr.header,
+    #myTable tr:hover {
+        /* Add a grey background color to the table header and on hover */
+        background-color: #f1f1f1;
+    }
+</style>
+
+<body>
+    <br>
+    <br>
+    <br>
+    <br>
+    <nav class="w3-sidebar w3-bar-block w3-card" id="mySidebar">
+        <div class="w3-container w3-theme-d2"> <span onclick="closeSidebar()" class="w3-button w3-display-topright w3-large">X</span>
+            <br>
+            <div class="w3-padding w3-center"> <img class="w3-circle" src="clublogo.png" alt="clublogo" style="width:75%"> </div>
+        </div>
+        <button class="w3-button w3-block w3-left-align" onclick="myAccFunc()"> Clubs <i class="fa fa-caret-down"></i> </button>
+        <div id="demoAcc" class="w3-hide w3-white w3-card"> <a href="#" class="w3-bar-item w3-button" onclick="closeSidebar()">All Clubs</a> <a href="#Academic" class="w3-bar-item w3-button" onclick="closeSidebar()">Academic</a> <a href="#Academic - Business" class="w3-bar-item w3-button" onclick="closeSidebar()">Academic - Business</a> <a href="#Academic - Engineering" class="w3-bar-item w3-button" onclick="closeSidebar()">Academic - Engineering</a> <a href="#Academic - Health Science" class="w3-bar-item w3-button" onclick="closeSidebar()">Academic - Health Science</a><a href="#Academic - Nursing" class="w3-bar-item w3-button" onclick="closeSidebar()">Academic - Nursing</a> <a href="#Academic - Pre-Professional" class="w3-bar-item w3-button" onclick="closeSidebar()">Academic - Pre-Professional</a> <a href="#Faith-Based" class="w3-bar-item w3-button" onclick="closeSidebar()">Faith-Based</a> <a href="#Media" class="w3-bar-item w3-button" onclick="closeSidebar()">Media</a> <a href="#Multicultural" class="w3-bar-item w3-button" onclick="closeSidebar()">Multicultural</a> <a href="#Performing" class="w3-bar-item w3-button" onclick="closeSidebar()">Performing</a> <a href="#Political" class="w3-bar-item w3-button" onclick="closeSidebar()">Political</a><a href="#Professional Development" class="w3-bar-item w3-button" onclick="closeSidebar()">Professional Development</a> <a href="#Recreational" class="w3-bar-item w3-button" onclick="closeSidebar()">Recreational</a> <a href="#Service" class="w3-bar-item w3-button" onclick="closeSidebar()">Service</a><a href="#Social" class="w3-bar-item w3-button" onclick="closeSidebar()">Social</a><a href="#Social Awareness" class="w3-bar-item w3-button" onclick="closeSidebar()">Social Awareness</a></div> <a class="active" href="index.html" onclick="closeSidebar()"><i class="fa fa-fw fa-home"></i> Home</a> <a href="#" onclick="closeSidebar()"><i class="fa fa-fw fa-search"></i> Search</a> <a href="contact.html" onclick="closeSidebar()"><i class="fa fa-fw fa-envelope"></i> Contact</a> <a href="account.html" onclick="closeSidebar()"><i class="fa fa-fw fa-user"></i> Account</a>
+    </nav>
+    <header class="w3-top w3-bar w3-theme">
+        <button class="w3-bar-item w3-button w3-xxxlarge w3-hover-theme" onclick="openSidebar()">&#9776;</button>
+        <h1 class="w3-bar-item">Clubs</h1>
+    </header>
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for clubs..">
+    <table id="myTable">
+        <tr class="header">
+            <th style="width:60%;">Name</th>
+            <th style="width:40%;">President</th>
+        </tr>
+        <tr>
+            <td><a href="ClubProfileTemp/spanish.html">Spanish Club</a></td>
+            <td>John Doe</td>
+        </tr>
+        <tr>
+            <td>Sociology Club</td>
+            <td>Jane Doe</td>
+        </tr>
+        <tr>
+            <td>Speech Team (Forensics)</td>
+            <td>Billy Bob</td>
+        </tr>
+        <tr>
+            <td>Some other club</td>
+            <td>Joe Bob</td>
+        </tr>
+    </table>
+    <script>
+        closeSidebar();
+
+        function openSidebar() {
+            document.getElementById("mySidebar").style.display = "block";
+        }
+
+        function closeSidebar() {
+            document.getElementById("mySidebar").style.display = "none";
+        }
+
+        function myAccFunc() {
+            var x = document.getElementById("demoAcc");
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+                x.previousElementSibling.className += " w3-green";
+            } else {
+                x.className = x.className.replace(" w3-show", "");
+                x.previousElementSibling.className = x.previousElementSibling.className.replace(" w3-green", "");
+            }
+        }
+
+        function myFunction() {
+            // Declare variables 
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+    </script>
+</body>
+
+</html>
