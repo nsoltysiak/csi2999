@@ -29,53 +29,48 @@
     <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     
     <div data-role="header">
-        <button onclick="location.href='home_page.php'">&#8656;</button>
-        <h1>Welcome</h1>
+        <button onclick="location.href='newclub.php'">New</button>
+        <h1>Clubs</h1>
+        <button onclick="location.href='search.php'">Search</button>
     </div>
 <div class="header">
 </div>
 <div class="content">
-  
+
+    
+    <p style="text-align:center;">List of clubs at OU:</p>
     
     <?php
     //connect to database
     $mysqli = mysqli_connect('localhost', 'mauricefuentes', 'E1i9s0Z5', 'mauricefuentes');
     
-    $myVar = $_REQUEST['id'];
+    //query the database
+    $resultSet = $mysqli->query("SELECT * FROM clubs");
     
-    $query = "SELECT * FROM clubs WHERE id='$myVar'";
-    $resultID = mysqli_query($mysqli, $query);
-    
-    if ($resultID->num_rows != 0) {
-        while ($rows = $resultID->fetch_assoc()) {
-            $presidentf = $rows['presidentfirst'];
-            $presidentl = $rows['presidentlast'];
-            $presidente = $rows['presidentemail'];
+    //count the returned rows
+    if ($resultSet->num_rows != 0) {
+        while ($rows = $resultSet->fetch_assoc()) {
             $clubname = $rows['clubname'];
-            $description = $rows['clubdescription'];
             $id = $rows['id'];
-            
-            echo "<h1 style='text-align:center;'>$clubname</h1>";
-            echo "<h2 style='margin: 0px 10px 0px 10px;'>Club Description:</h2>";
-            echo "<br>";
-            echo "<p style='margin: 0px 10px 0px 10px;'>$description</p>";
-            echo "<br>";
-            echo "<h3 style='margin: 0px 10px 0px 10px;'>Officers:</h2>";
-            echo "<p style='margin: 0px 10px 0px 10px;'>President: $presidentf $presidentl</p>";
-            echo "<p style='margin: 0px 10px 0px 10px;'>Email: $presidente</p>";
-            echo "<br>";
-            echo "<h2 style='margin: 0px 10px 0px 10px;'>Events</h2>";
+            echo "<div class='clubs'><a href='clubpage.php?id=$id'><button>$clubname</button></a></div>";
         }
     } else {
         echo "No results";
     }
     
+    //turn the results into an array
     
+    
+    //display the results
     
     
     ?>
     
-    
 </div>
+    <br>
+    <?php  if (isset($_SESSION['email'])) : ?>
+    	<p class="logout"> <a href="index.php?logout='1'" style="color: red; padding:10px; background-color: pink;">logout</a> </p>
+    <?php endif ?>
+    
 </body>
 </html>

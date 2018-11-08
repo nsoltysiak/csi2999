@@ -1,0 +1,331 @@
+raw code:
+
+<?php
+    $con= new mysqli("localhost","root","","Employee");
+    $name = $_post['search'];
+    //$query = "SELECT * FROM employees
+   // WHERE first_name LIKE '%{$name}%' OR last_name LIKE '%{$name}%'";
+
+    // Check connection
+    if (mysqli_connect_errno())
+      {
+      echo "Failed to connect to MySQL: " . mysqli_connect_error();
+      }
+
+$result = mysqli_query($con, "SELECT * FROM employees
+    WHERE first_name LIKE '%{$name}%' OR last_name LIKE '%{$name}%'");
+
+while ($row = mysqli_fetch_array($result))
+{
+        echo $row['first_name'] . " " . $row['last_name'];
+        echo "<br>";
+}
+    mysqli_close($con);
+    ?>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <?php
+        $search_value=$_POST["search_club"];
+        $con= mysqli_connect('localhost', 'mauricefuentes', 'E1i9s0Z5', 'mauricefuentes');
+        if($con->connect_error){
+            echo 'Connection Faild: '.$con->connect_error;
+        }else{
+            $sql="SELECT * FROM clubs WHERE clubname like '%$search_value%'";
+
+            $res=$con->query($sql);
+
+            while($row=$res->fetch_assoc()){
+                echo '<div class="clubs"><a href=""><button>'.$row["clubname"].'</button></div>';
+            }
+        }
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    <form action="" method="post">
+        <input type="text" name="search_club">
+        <input type="submit" name="submit_club" value="Search">
+    </form>
+    
+    <br>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <?php
+    $con= mysqli_connect('localhost', 'mauricefuentes', 'E1i9s0Z5', 'mauricefuentes');
+    $name = $_POST['search_club'];
+    //$query = "SELECT * FROM employees
+   // WHERE first_name LIKE '%{$name}%' OR last_name LIKE '%{$name}%'";
+
+    // Check connection
+    if (mysqli_connect_errno())
+      {
+      echo "Failed to connect to MySQL: " . mysqli_connect_error();
+      }
+
+$result = mysqli_query($con, "SELECT * FROM clubs
+    WHERE clubname LIKE '%{$name}%'");
+
+while ($row = mysqli_fetch_array($result))
+{
+        echo '<div class="clubs"><a href=""><button>'.$row["clubname"].'</button></div>';
+}
+    mysqli_close($con);
+    ?>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <?php
+    //connect to database
+    $mysqli = mysqli_connect('localhost', 'mauricefuentes', 'E1i9s0Z5', 'mauricefuentes');
+    
+    //query the database
+    $resultSet = $mysqli->query("SELECT * FROM clubs");
+    
+    //count the returned rows
+    if ($resultSet->num_rows != 0) {
+        while ($rows = $resultSet->fetch_assoc()) {
+            $clubname = $rows['clubname'];
+            echo "<div class='clubs'><button>$clubname</button></div>";
+        }
+    } else {
+        echo "No results";
+    }
+    
+    //turn the results into an array
+    
+    
+    //display the results
+    
+    
+    ?>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    $resultSet = $mysqli->query("SELECT * FROM clubs");
+    $user_check_query1 = $mysqli->query("SELECT * FROM clubs WHERE id='$id' LIMIT 1");
+    $result_id = mysql_query($mysqli, $user_check_query1);
+    $club_id = mysqli_fetch_assoc($result_id);
+    
+    echo "$club_id";
+    
+    
+    //count the returned rows
+    if ($resultSet->num_rows != 0) {
+        
+        while ($rows = $resultSet->fetch_assoc()) {
+            $clubname = $rows['clubname'];
+            echo "$clubname";
+            echo "<br>";
+            echo "$club_id";
+            echo "<br>";
+        }
+    } else {
+        echo "No results";
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    $myVar = $_REQUEST['id'];
+    
+    $resultSetAll = $mysqli->query("SELECT * FROM clubs");
+    $resultSetID = $mysqli->query("SELECT * FROM clubs WHERE id LIKE '$myVar'");
+    
+    echo "$resultSetID";
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    if($_REQUEST['id'] == 11)
+    {
+       echo "<h1 style='text-align:center;'>Club Name Here</h1><h2>Club Description:</h2><p>Club Decription here</p><h2>Events</h2>";
+           
+        echo '<iframe src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showNav=0&amp;showPrint=0&amp;mode=AGENDA&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=oakland.edu_u0tps1bsuam9d0oah66da84ojc%40group.calendar.google.com&amp;color=%2329527A&amp;ctz=America%2FNew_York" style="border-width:0" width="100%" height="600" frameborder="0" scrolling="no"></iframe>';
+    }

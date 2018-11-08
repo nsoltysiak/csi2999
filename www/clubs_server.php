@@ -27,6 +27,6 @@ if (isset($_POST['reg_club'])) {
     $query = "INSERT INTO clubs (clubname, clubdescription, presidentfirst, presidentlast, presidentemail) 
   			  VALUES('$clubname', '$clubdescription', '$presidentfirst', '$presidentlast', '$presidentemail')";
   	mysqli_query($db, $query);
-      header('location: clubpage.php');
+      header('location: home_page.php');
   }
 }

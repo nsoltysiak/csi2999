@@ -105,6 +105,10 @@ form, .content {
 
 */
 
+body {
+    margin-bottom: 30px;
+}
+
 .error {
   width: 100%; 
   margin: 0px auto;
@@ -141,6 +145,20 @@ form {
 
 .logreg {
     margin: 0px 20px 0px 20px;
+}
+
+.clubs {
+    margin: 0px 20px 0px 20px;
+}
+
+.logout {
+    background-color: pink;
+    text-align: center;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    margin: 0px 20px 0px 20px;
+    border: 1px solid red;
+    border-radius: 5px;
 }
 
 a {
