@@ -18,11 +18,11 @@
     
     <img class="login_logo" src="logo.png" align="center">
 
-  <form method="post" action="login.php">
+  <form method="post" data-ajax="false" action="login.php">
   	<?php include('errors.php'); ?>
   	<div class="input-group">
   		<label>Email:</label>
-  		<input type="text" name="email" >
+  		<input type="text" name="email" pattern="[a-z0-9._%+-]+@oakland.edu$" placeholder="Enter a valid Oakland.edu email" required >
   	</div>
   	<div class="input-group">
   		<label>Password:</label>

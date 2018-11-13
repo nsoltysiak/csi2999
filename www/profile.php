@@ -22,78 +22,74 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
 	<title>Home</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
+    
     <style>
         #a, #b {
             display: none;
         }
         
         #footer {
-            position: fixed;
+            position:absolute;
             bottom: 0;
             width: 100%;
         } 
-        
-        #topnav {
-            position: fixed;
-            width: 100%;
-        }
     
     </style>
+    
+    
 </head>
 <body class="main_body">
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     
+    
+    
     <div style="position:fixed; width:100%;" data-role="header">
-        <button onclick="location.href='home_page.php'">&#8656;</button>
-        <h1>Oakland University</h1>
+
+        <h1>Profile</h1>
     </div>
+
+    
 <div class="header">
 </div>
 <div style="z-index:-1; margin-top:70px;" class="content">
-  
+
+    
     
     <?php
     //connect to database
     $mysqli = mysqli_connect('localhost', 'mauricefuentes', 'E1i9s0Z5', 'mauricefuentes');
     
-    $myVar = $_REQUEST['id'];
+    $email = $_SESSION['email'];
+    //query the database
+    $resultSet = $mysqli->query("SELECT * FROM users WHERE email='$email'");
     
-    $query = "SELECT * FROM clubs WHERE id='$myVar'";
-    $resultID = mysqli_query($mysqli, $query);
-    
-    if ($resultID->num_rows != 0) {
-        while ($rows = $resultID->fetch_assoc()) {
-            $presidentf = $rows['presidentfirst'];
-            $presidentl = $rows['presidentlast'];
-            $presidente = $rows['presidentemail'];
-            $clubname = $rows['clubname'];
-            $description = $rows['clubdescription'];
-            $id = $rows['id'];
-            
+    //count the returned rows
+    if ($resultSet->num_rows != 0) {
+        while ($rows = $resultSet->fetch_assoc()) {
+            $user_first = $rows['firstname'];
+            $user_last = $rows['lastname'];
             if ($rows['image'] === "") {
-                echo "<p style='text-align:center;'><img width='100' height='100' src='club_default1.png' align='middle' alt='Default Picture'></p>";
+                echo "<p style='text-align:center;'><img width='100' height='100' src='default.png' align='middle' alt='Default Picture'></p>";
             }
-            echo "<h1 style='text-align:center;'>$clubname</h1>";
-            echo "<h2 style='margin: 0px 10px 0px 10px;'>Club Description:</h2>";
-            echo "<br>";
-            echo "<p style='margin: 0px 10px 0px 10px;'>$description</p>";
-            echo "<br>";
-            echo "<h3 style='margin: 0px 10px 0px 10px;'>Officers:</h2>";
-            echo "<p style='margin: 0px 10px 0px 10px;'>President: $presidentf $presidentl</p>";
-            echo "<p style='margin: 0px 10px 0px 10px;'>Email: $presidente</p>";
-            echo "<br>";
-            echo "<h2 style='margin: 0px 10px 0px 10px;'>Events</h2>";
+            echo "<h3 style='text-align:center;'>$user_first $user_last</h3>";
         }
     } else {
         echo "No results";
     }
+    
     ?>
+    
+</div>
+    <br>
+    <?php  if (isset($_SESSION['email'])) : ?>
+    	<p class="logout"> <a href="home_page.php?logout='1'" style="color: red; padding:10px; background-color: pink;">logout</a> </p>
+    <?php endif ?>
     
     <br>
     <br>
-    <div style="position:fixed; width:100%; bottom:0;" data-role="navbar">
+    <div data-role="navbar" style="position:fixed; width:100%; bottom:0;">
             <ul>
                 <li><a href="home_page.php" data-href="a">Clubs</a></li>
                 <li><a href="search.php" data-href="b">Search</a></li>
@@ -101,6 +97,6 @@
             </ul>
         </div><!-- /navbar -->
     
-</div>
+    
 </body>
 </html>

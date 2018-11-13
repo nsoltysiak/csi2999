@@ -16,19 +16,19 @@
         <h1>Register</h1>
     </div>
 
-  <form method="post" action="register.php">
+  <form method="post" data-ajax="false" action="register.php">
   	<?php include('errors.php'); ?>
   	<div class="input-group">
   	  <label>First Name:</label>
-  	  <input type="text" name="firstname" value="<?php echo $firstname; ?>">
+  	  <input type="text" name="firstname">
   	</div>
     <div class="input-group">
   	<label>Last Name:</label>
-  	<input type="text" name="lastname" value="<?php echo $lastname; ?>">
+  	<input type="text" name="lastname">
   	</div>
   	<div class="input-group">
   	  <label>Email:</label>
-  	  <input type="email" name="email" value="<?php echo $email; ?>" >
+  	  <input type="email" name="email" pattern="[a-z0-9._%+-]+@oakland.edu$" placeholder="Enter a valid Oakland.edu email" required >
   	</div>
   	<div class="input-group">
   	  <label>Password:</label>

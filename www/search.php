@@ -22,21 +22,32 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
 	<title>Home</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        #a, #b {
+            display: none;
+        }
+        
+        #footer {
+            position:absolute;
+            bottom: 0;
+            width: 100%;
+        } 
+    
+    </style>
 </head>
 <body class="main_body">
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     
-    <div data-role="header">
-        <button onclick="location.href='home_page.php'">&#8656;</button>
+    <div style="position:fixed; width:100%;" data-role="header">
         
         <h1>Search</h1>
         <button onclick="location.href='newclub.php'">New</button>
     </div>
 <div class="header">
 </div>
-<div class="content">
+<div style="z-index:-1; margin-top:70px;" class="content">
     
 <?php
     
@@ -51,11 +62,12 @@
         $resultSet = $mysqli->query("SELECT * FROM clubs WHERE clubname LIKE '%$search%'");
         
         if($resultSet->num_rows > 0) {  
-            $output .= "<p style='margin-left:10px;'>Search results:</p>";
+            $output .= "<h2 style='margin-left:30px;'>Search results:</h2>";
             while($rows = $resultSet->fetch_assoc()) 
             {
                 $club_name = $rows['clubname'];
-                $output .= "<div class='clubs'><button>$club_name</button></div>";
+                $club_id = $rows['id'];
+                $output .= "<div class='clubs'><a href='clubpage.php?id=$club_id'><button>$club_name</button></a></div>";
             }
         } else {
             $output = "no results";
@@ -65,7 +77,7 @@
     ?>
     
     
-    <form method="post">
+    <form method="post" data-ajax="false">
         <input type="text" name="search"/>
         <input type="submit" name="submit" value="Search"/>
      </form>
@@ -74,7 +86,16 @@
     <?php echo $output; ?>
     
     </div>
+    
     <br>
+    <br>
+    <div data-role="navbar" style="position:fixed; width:100%; bottom:0;">
+            <ul>
+                <li><a href="home_page.php" data-href="a">Clubs</a></li>
+                <li><a href="search.php" data-href="b">Search</a></li>
+                <li><a href="profile.php" data-href="b">Profile</a></li>
+            </ul>
+        </div><!-- /navbar -->
     
 </body>
 </html>
