@@ -5,9 +5,6 @@ session_start();
 $firstname = "";
 $lastname = "";
 $email    = "";
-$date = "";
-$time = "";
-$location = "";
 $errors = array(); 
 
 // connect to the database
