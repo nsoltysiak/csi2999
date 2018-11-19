@@ -16,6 +16,7 @@ if (isset($_POST['reg_club'])) {
   $presidentfirst = mysqli_real_escape_string($db, $_POST['presidentfirst']);
   $presidentlast = mysqli_real_escape_string($db, $_POST['presidentlast']);
   $presidentemail = mysqli_real_escape_string($db, $_POST['presidentemail']);
+  $owner = $_SESSION['email'];
 
   if (empty($clubname)) { array_push($errors, "Club name is required"); }
   if (empty($clubdescription)) { array_push($errors, "Club description is required"); } 
@@ -24,8 +25,8 @@ if (isset($_POST['reg_club'])) {
   if (empty($presidentemail)) { array_push($errors, "Email is required"); }
     
   if (count($errors) == 0) {
-    $query = "INSERT INTO clubs (clubname, clubdescription, presidentfirst, presidentlast, presidentemail) 
-  			  VALUES('$clubname', '$clubdescription', '$presidentfirst', '$presidentlast', '$presidentemail')";
+    $query = "INSERT INTO clubs (clubname, clubdescription, presidentfirst, presidentlast, presidentemail, owner) 
+  			  VALUES('$clubname', '$clubdescription', '$presidentfirst', '$presidentlast', '$presidentemail', '$owner')";
   	mysqli_query($db, $query);
       header('location: home_page.php');
   }

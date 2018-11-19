@@ -47,6 +47,7 @@
 
         <h1>Clubs</h1>
         <button onclick="location.href='newclub.php'">New</button>
+        <button onclick="location.href='search.php'">Search</button>
     </div>
 
     
@@ -90,8 +91,8 @@
     <div data-role="navbar" style="position:fixed; width:100%; bottom:0;">
             <ul>
                 <li><a href="home_page.php" data-href="a">Clubs</a></li>
-                <li><a href="search.php" data-href="b">Search</a></li>
                 <li><a href="profile.php" data-href="c">Profile</a></li>
+                <li><a href="favorites.php" data-href="b">Favorites</a></li>
             </ul>
         </div><!-- /navbar -->
     

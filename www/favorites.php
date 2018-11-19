@@ -22,6 +22,7 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
 	<title>Home</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
+    
     <style>
         #a, #b {
             display: none;
@@ -34,61 +35,67 @@
         } 
     
     </style>
+    
+    
 </head>
 <body class="main_body">
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     
-    <div style="position:fixed; width:100%;" data-role="header">
-        
-        <h1>Search</h1>
-        <button onclick="location.href='home_page.php'">&#8656;</button>
+    <div style="position:fixed; width:100%; z-index:1;" data-role="header">
+
+        <h1>Clubs</h1>
+        <button onclick="location.href='newclub.php'">New</button>
     </div>
+
+    
 <div class="header">
 </div>
 <div style="z-index:-1; margin-top:70px;" class="content">
+
     
-<?php
+    <h2 style="text-align:center;">Clubs you Created</h2>
     
-    $output= NULL;
+    <?php
+    //connect to database
+    $mysqli = mysqli_connect('localhost', 'mauricefuentes', 'E1i9s0Z5', 'mauricefuentes');
     
-    if(isset($_POST['submit'])) {
-        //connect to database
-        $mysqli = mysqli_connect('localhost', 'mauricefuentes', 'E1i9s0Z5', 'mauricefuentes');
-        
-        $search = $mysqli->real_escape_string($_POST['search']); 
-        //query database
-        $resultSet = $mysqli->query("SELECT * FROM clubs WHERE clubname LIKE '%$search%'");
-        
-        if($resultSet->num_rows > 0) {  
-            $output .= "<h2 style='margin-left:30px;'>Search results:</h2>";
-            while($rows = $resultSet->fetch_assoc()) 
-            {
-                $club_name = $rows['clubname'];
-                $club_id = $rows['id'];
-                $output .= "<div class='clubs'><a href='clubpage.php?id=$club_id'><button>$club_name</button></a></div>";
-            }
-        } else {
-            $output = "no results";
+    $email = $_SESSION['email'];
+    
+    //query the database
+    $resultSet = $mysqli->query("SELECT * FROM clubs WHERE owner LIKE '$email'");
+    
+    //count the returned rows
+    if ($resultSet->num_rows != 0) {
+        while ($rows = $resultSet->fetch_assoc()) {
+            $clubname = $rows['clubname'];
+            $id = $rows['id'];
+            echo "<div class='clubs'><a href='clubpage2.php?id=$id'><button>$clubname</button></a></div>";
         }
+    } else {
+        echo "No results";
     }
+    
+    //turn the results into an array
+    
+    
+    //display the results
+    
     
     ?>
     
-    
-    <form method="post">
-        <input type="text" name="search"/>
-        <input type="submit" name="submit" value="Search"/>
-     </form>
-    
-    
-    <?php echo $output; ?>
-    
-    </div>
+</div>
     
     <br>
     <br>
+    <div data-role="navbar" style="position:fixed; width:100%; bottom:0;">
+            <ul>
+                <li><a href="home_page.php">Clubs</a></li>
+                <li><a href="profile.php">Profile</a></li>
+                <li><a href="favorites.php">Favorites</a></li>
+            </ul>
+        </div><!-- /navbar -->
     
     
 </body>
