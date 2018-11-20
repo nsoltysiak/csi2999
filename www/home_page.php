@@ -93,6 +93,7 @@
                 <li><a href="home_page.php" data-href="a">Clubs</a></li>
                 <li><a href="profile.php" data-href="c">Profile</a></li>
                 <li><a href="favorites.php" data-href="b">Favorites</a></li>
+                <li><a href="eventTable.php" data-href="d">Events</a></li>
             </ul>
         </div><!-- /navbar -->
     
