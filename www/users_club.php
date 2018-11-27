@@ -1,3 +1,5 @@
+
+
 <?php 
   session_start(); 
 
@@ -45,26 +47,28 @@
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     
+    
+<div class="header">
     <div style="position:fixed; width:100%;" data-role="header">
-        <button onclick="location.href='home_page.php'">&#8656;</button>
+        <button onclick="location.href='favorites.php'">&#8656;</button>
         <h1>Oakland University</h1>
     </div>
-<div class="header">
+    
 </div>
 <div style="z-index:-1; margin-top:70px;" class="content">
   
     
     <?php
     //connect to database
-    $mysqli = mysqli_connect('localhost', 'mauricefuentes', 'E1i9s0Z5', 'mauricefuentes');
+    $mysqli2 = mysqli_connect('localhost', 'mauricefuentes', 'E1i9s0Z5', 'mauricefuentes');
     
-    $myVar = $_REQUEST['id'];
+    $myVar2 = $_REQUEST['id'];
     
-    $query = "SELECT * FROM clubs WHERE id='$myVar'";
-    $resultID = mysqli_query($mysqli, $query);
+    $query2 = "SELECT * FROM clubs WHERE id='$myVar2'";
+    $resultID2 = mysqli_query($mysqli2, $query2);
     
-    if ($resultID->num_rows != 0) {
-        while ($rows = $resultID->fetch_assoc()) {
+    if ($resultID2->num_rows != 0) {
+        while ($rows = $resultID2->fetch_assoc()) {
             $presidentf = $rows['presidentfirst'];
             $presidentl = $rows['presidentlast'];
             $presidente = $rows['presidentemail'];
@@ -102,12 +106,9 @@
             echo "<h1 style='text-align:center;'>$clubname</h1>";
             echo "<h2 style='margin: 0px 10px 0px 10px;'>Club Description:</h2>";
             echo "<br>";
-            
             echo "<p style='margin: 0px 10px 0px 10px;'>$description</p>";
             echo "<br>";
-            
             echo "<h3 style='margin: 0px 10px 0px 10px;'>Officers:</h2>";
-            
             echo "<p style='margin: 0px 10px 0px 10px;'>President: $presidentf $presidentl</p>";
             echo "<p style='margin: 0px 10px 0px 10px;'>Email: $presidente</p>";
             echo "<br>";
@@ -140,12 +141,33 @@
     } else {
         echo "No results";
     }
+    
+    
+    
+    
+    
+    //query the database
+    $resultSetNC = $mysqli2->query("SELECT * FROM clubs WHERE id='$myVar2'");
+    
+    //count the returned rows
+    if ($resultSetNC->num_rows != 0) {
+        while ($rows = $resultSetNC->fetch_assoc()) {
+            $clubname = $rows['clubname'];
+            $idNC = $rows['id'];
+            echo "<div class='clubs'><a href='form.php?id=$idNC'><button>Create New Event</button></a></div>";
+        }
+    } else {
+        echo "No results";
+    }
+    
     ?>
     
-    <br>
-    <br>
     
     
 </div>
+    
+
+    
 </body>
+    
 </html>

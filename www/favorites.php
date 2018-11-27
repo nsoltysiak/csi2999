@@ -71,7 +71,7 @@
         while ($rows = $resultSet->fetch_assoc()) {
             $clubname = $rows['clubname'];
             $id = $rows['id'];
-            echo "<div class='clubs'><a href='clubpage2.php?id=$id'><button>$clubname</button></a></div>";
+            echo "<div class='clubs'><a href='users_club.php?id=$id'><button>$clubname</button></a></div>";
         }
     } else {
         echo "No results";
@@ -94,6 +94,7 @@
                 <li><a href="home_page.php">Clubs</a></li>
                 <li><a href="profile.php">Profile</a></li>
                 <li><a href="favorites.php">Favorites</a></li>
+                <li><a href="eventTable.php">Events</a></li>
             </ul>
         </div><!-- /navbar -->
     

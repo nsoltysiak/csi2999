@@ -65,6 +65,8 @@
     //query the database
     $resultSet = $mysqli->query("SELECT * FROM clubs");
     
+    
+    
     //count the returned rows
     if ($resultSet->num_rows != 0) {
         while ($rows = $resultSet->fetch_assoc()) {
@@ -90,10 +92,10 @@
     <br>
     <div data-role="navbar" style="position:fixed; width:100%; bottom:0;">
             <ul>
-                <li><a href="home_page.php" data-href="a">Clubs</a></li>
-                <li><a href="profile.php" data-href="c">Profile</a></li>
-                <li><a href="favorites.php" data-href="b">Favorites</a></li>
-                <li><a href="eventTable.php" data-href="d">Events</a></li>
+                <li><a href="home_page.php">Clubs</a></li>
+                <li><a href="profile.php">Profile</a></li>
+                <li><a href="favorites.php">Favorites</a></li>
+                <li><a href="eventTable.php">Events</a></li>
             </ul>
         </div><!-- /navbar -->
     

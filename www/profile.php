@@ -91,9 +91,10 @@
     <br>
     <div data-role="navbar" style="position:fixed; width:100%; bottom:0;">
             <ul>
-                <li><a href="home_page.php" data-href="a">Clubs</a></li>
-                <li><a href="profile.php" data-href="b">Profile</a></li>
-                <li><a href="favorites.php" data-href="b">Favorites</a></li>
+                <li><a href="home_page.php">Clubs</a></li>
+                <li><a href="profile.php">Profile</a></li>
+                <li><a href="favorites.php">Favorites</a></li>
+                <li><a href="eventTable.php">Events</a></li>
             </ul>
         </div><!-- /navbar -->
     

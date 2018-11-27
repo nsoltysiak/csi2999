@@ -22,7 +22,7 @@
   	<?php include('errors.php'); ?>
   	<div class="input-group">
   		<label>Email:</label>
-  		<input type="text" name="email" pattern="[a-z0-9._%+-]+@oakland.edu$" placeholder="Enter a valid Oakland.edu email" required >
+  		<input type="text" name="email" pattern="[a-z0-9._%+-]+@oakland.edu$" placeholder="Enter a valid oakland.edu email" required >
   	</div>
   	<div class="input-group">
   		<label>Password:</label>

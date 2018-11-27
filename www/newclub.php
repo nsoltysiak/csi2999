@@ -84,15 +84,15 @@
       
      <div class="input-group">
   	  <label>Vice President's First Name:</label>
-  	  <input type="text" name="vicepresidentfirst" value="">
+  	  <input type="text" name="vpresidentfirst" value="">
   	</div> 
       <div class="input-group">
   	  <label>Vice President's Last Name:</label>
-  	  <input type="text" name="viepresidentlast" value="">
+  	  <input type="text" name="vpresidentlast" value="">
   	</div> 
       <div class="input-group">
   	  <label> Vice President's Email:</label>
-  	  <input type="email" name="vicepresidentemail" value="">
+  	  <input type="email" name="vpresidentemail" value="">
   	</div> 
       
       <h3>Treasurer</h3>
@@ -145,15 +145,15 @@
       
        <div class="input-group">
   	  <label>Meeting Days:</label>
-  	  <input type="text" name="meetingday" value="">
+  	  <input type="text" name="mdays" value="">
   	</div> 
       <div class="input-group">
   	  <label>Meeting Time:</label>
-  	  <input type="text" name="meetingtime" value="">
+  	  <input type="text" name="mtime" value="">
   	</div> 
       <div class="input-group">
   	  <label>Meeting Location:</label>
-  	  <input type="text" name="meetingloc" value="">
+  	  <input type="text" name="mlocation" value="">
       </div>
       
       <br>
@@ -161,11 +161,11 @@
       
       <div class="input-group">
   	  <label>Facebook Link:</label>
-  	  <input type="url" name="facebook" value="">
+  	  <input type="url" name="facebooklink" value="">
   	</div>
       <div class="input-group">
   	<label>Selection Process:</label>
-  	<textarea name="selectionpro" cols="55"></textarea>
+  	<textarea name="selectionprocess" cols="55"></textarea>
   	</div>
       <br>
   	<div class="input-group">

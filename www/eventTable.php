@@ -1,8 +1,29 @@
+<?php 
+  session_start(); 
+
+  if (!isset($_SESSION['email'])) {
+  	$_SESSION['msg'] = "You must log in first";
+  	header('location: login.php');
+    die();
+  }
+
+  if (isset($_GET['logout'])) {
+  	session_destroy();
+  	unset($_SESSION['email']);
+  	header("location: login.php");
+  }
+
+?>
+
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title> Events </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    
+    <!--
     <script type="text/javascript" src="sort-table.js"></script>
     <style>
         table {
@@ -26,9 +47,23 @@
         }
 
     </style>
+-->
 </head>
 
 <body>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    
+    
+    <div style="position:fixed; width:100%;" data-role="header">
+        
+        <h1>Upcoming Events</h1>
+    </div>
+    
+    <div style="z-index:-1; margin-top:70px; margin-left: 15px;" class="content">
+    
+    
     <h1> List of Events </h1>
     <?php
 $servername = "localhost"; // Will typically be localhost since PHP and MySQL
@@ -45,22 +80,37 @@ if ($conn->connect_error) {
 die("Connection failed: " . $conn->connect_error);
 }
 // Control reaching here means thread is not dead -- successful connection
-echo "<a href='http://www.secs.oakland.edu/~nsoltysiak/www/form.html'>Click here to create an event</a><br><br>";
 //echo "Connected successfully <br>";
 $sql = "SELECT * FROM events ORDER BY date ASC";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
-    echo "<table><tr><th>Event Date</th><th>Event Name</th><th>Club</th><th>Description</th></tr>";
+    
 while($row = $result->fetch_assoc()) {
-echo "<tr><td> " . $row["date"] . " </td><td>" . $row["ename"] . " </td><td>" . $row["cname"] .
-" </td><td>" . $row["description"] . "</td></tr>";
+    
+    echo "<h2>" . $row["ename"] . "</h2>";
+    echo "<h3 style='margin-top:-15px;'>" . $row["cname"] . "</h3>";
+    echo "<h4 style='margin-top:-15px;'>" . $row["date"] . "</h4>";
+    echo "<p style='margin-top:-15px;'>" . $row["description"] . "</p>";
+    echo "<br>";
 }
-    echo "</table>";
+    
 } else {
 echo "No Event Records Found. <br>";
 }
 $conn->close();
 ?>
+    
+    </div>
+    
+    <div data-role="navbar" style="position:fixed; width:100%; bottom:0;">
+            <ul>
+                <li><a href="home_page.php">Clubs</a></li>
+                <li><a href="profile.php">Profile</a></li>
+                <li><a href="favorites.php">Favorites</a></li>
+                <li><a href="eventTable.php">Events</a></li>
+            </ul>
+        </div><!-- /navbar -->
+    
 </body>
 
 </html>
