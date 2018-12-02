@@ -77,7 +77,7 @@
     ?>
     
     
-    <form method="post">
+    <form method="post" data-ajax="false">
         <input type="text" name="search"/>
         <input type="submit" name="submit" value="Search"/>
      </form>

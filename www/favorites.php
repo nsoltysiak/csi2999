@@ -72,9 +72,13 @@
             $clubname = $rows['clubname'];
             $id = $rows['id'];
             echo "<div class='clubs'><a href='users_club.php?id=$id'><button>$clubname</button></a></div>";
+            echo "<button onclick='location.href='home_page.php''>OU Clubs</button>";
+            
+            
+            
         }
     } else {
-        echo "No results";
+        echo "<p style='margin-left:15px; margin-right:15px; text-align:center;'>No results. But you can create a new Club</p>";
     }
     
     //turn the results into an array
@@ -91,10 +95,11 @@
     <br>
     <div data-role="navbar" style="position:fixed; width:100%; bottom:0;">
             <ul>
-                <li><a href="home_page.php">Clubs</a></li>
-                <li><a href="profile.php">Profile</a></li>
-                <li><a href="favorites.php">Favorites</a></li>
-                <li><a href="eventTable.php">Events</a></li>
+                
+                <li><button onclick="location.href='home_page.php'">OU Clubs</button></li>
+                <li><button onclick="location.href='profile.php'">Profile</button></li>
+                <li><button onclick="location.href='favorites.php'">My Clubs</button></li>
+                <li><button onclick="location.href='eventTable.php'">Events</button></li>
             </ul>
         </div><!-- /navbar -->
     

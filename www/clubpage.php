@@ -102,10 +102,8 @@
             echo "<h1 style='text-align:center;'>$clubname</h1>";
             echo "<h2 style='margin: 0px 10px 0px 10px;'>Club Description:</h2>";
             echo "<br>";
-            
             echo "<p style='margin: 0px 10px 0px 10px;'>$description</p>";
             echo "<br>";
-            
             echo "<h3 style='margin: 0px 10px 0px 10px;'>Officers:</h2>";
             
             echo "<p style='margin: 0px 10px 0px 10px;'>President: $presidentf $presidentl</p>";
@@ -133,9 +131,26 @@
             echo "<p style='margin: 0px 10px 0px 10px;'>Days: $mtime</p>";
             echo "<p style='margin: 0px 10px 0px 10px;'>Location: $mdays</p>";
             echo "<p style='margin: 0px 10px 0px 10px;'>Time: $mlocation</p>";
-            echo "<br>";
+            echo "<br><br>";
             
             echo "<h2 style='margin: 0px 10px 0px 10px;'>Events</h2>";
+            
+            $query1 = "SELECT * FROM events WHERE cname ='$clubname'";
+            $resultID1 = mysqli_query($mysqli, $query1);
+            
+            if ($resultID1->num_rows > 0) {
+    
+                while($row = $resultID1->fetch_assoc()) {
+    
+                    echo "<h3 style='margin-left: 10px; margin-right: 10px;'>" . $row["ename"] . "</h3>";
+                    echo "<h4 style='margin-top:-15px; margin-left: 10px; margin-right: 10px;'>" . $row["cname"] . "</h4>";
+                    echo "<h5 style='margin-top:-15px; margin-left: 10px; margin-right: 10px;'>" . $row["date"] . "</h5>";
+                    echo "<p style='margin-top:-15px; margin-left: 10px; margin-right: 10px;'>" . $row["description"] . "</p>";
+                }
+            } else {
+                echo "No Event Records Found. <br>";
+            }
+            
         }
     } else {
         echo "No results";

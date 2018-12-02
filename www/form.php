@@ -17,17 +17,20 @@
 
 <?php
 	$servername = "localhost";
-    	$username = "mauricefuentes";
-    	$password = "E1i9s0Z5";
-    	$dbname = "mauricefuentes";
+    $username = "mauricefuentes";
+    $password = "E1i9s0Z5";
+    $dbname = "mauricefuentes";
+    $errors = array(); 
+
 	$conn = new mysqli($servername, $username, $password, $dbname);
 
 	if ($conn->connect_error) {
         	die("Connection failed: " . $conn->error);
     	}
-    	echo "Connection Successful <br>";
+    	//echo "Connection Successful <br>";
 
-    $myVar3 = $_REQUEST['idNC'];
+    $cname1 = null;
+    $myVar3 = $_REQUEST['id'];
     
     $query = "SELECT * FROM clubs WHERE id='$myVar3'";
     $resultID = mysqli_query($conn, $query);
@@ -35,21 +38,58 @@
     if ($resultID->num_rows != 0) {
         while ($rows = $resultID->fetch_assoc()) {
             $cname1 = $rows['clubname'];
+            //echo "club: $cname1";
         }
     }
 
+/*
+function createNewEvent($cname1) {
+    
+    $cname = $cname1;
+    echo "test: $cname1";
+    echo "<script type='text/javascript'>alert('$cname1');</script>";
+    $ename = mysqli_real_escape_string($conn, $_POST['ename']);
+    $edate = mysqli_real_escape_string($conn, $_POST['date']);
+    $edescription = mysqli_real_escape_string($conn, $_POST['description']);
+	
+    if (empty($ename)) { array_push($errors, "field is required"); }
+    if (empty($edate)) { array_push($errors, "field is required"); }
+    if (empty($edescription)) { array_push($errors, "field is required"); }
+    
+    if (count($errors) == 0) {
 
+	   $sql = "INSERT INTO events(date, cname, ename, description) VALUES " .
+                "('$edate','$cname1', '$ename', '$edescription')";	
+    
+        mysqli_query($conn, $sql);
+        
+        header('location: favorites.php');
+    } 
+}
+*/
 
+if (isset($_POST['new_event'])) {
 
+    $cname = mysqli_real_escape_string($conn, $_POST['cname']);
+    $ename = mysqli_real_escape_string($conn, $_POST['ename']);
+    $edate = mysqli_real_escape_string($conn, $_POST['date']);
+    $edescription = mysqli_real_escape_string($conn, $_POST['description']);
+	
+    if (empty($ename)) { array_push($errors, "name is required"); }
+    if (empty($edate)) { array_push($errors, "date is required"); }
+    if (empty($edescription)) { array_push($errors, "description is required"); }
+    
+    if (count($errors) == 0) {
 
-	$cname = $cname1;
-	$ename = mysqli_real_escape_string($conn, $_REQUEST['ename']);
-	$date = mysqli_real_escape_string($conn, $_REQUEST['date']);
-	$description = mysqli_real_escape_string($conn, $_REQUEST['description']);
-
-	$sql = "INSERT INTO events(date, cname, ename, description) VALUES " .
-                "('$date','$cname', '$ename', '$description')";	
-
+	   $sql = "INSERT INTO events(date, cname, ename, description) VALUES " .
+                "('$edate','$cname', '$ename', '$edescription')";	
+    
+        mysqli_query($conn, $sql);
+        
+        header('location: favorites.php');
+    } 
+    
+}
 	
 	//if ($conn->query($sql) === TRUE) 
 	//{
@@ -73,7 +113,7 @@
 
 <head>
     <title>Event Entry</title>
-    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <!--
@@ -127,24 +167,24 @@
     
     <div style="position:fixed; width:100%;" data-role="header">
         <button onclick="location.href='favorites.php'">&#8656;</button>
-        <h1>Create new Club</h1>
+        <h1>Create new Event</h1>
     </div>
-    
-    
-    <br>
-    <br>
     <br>
     
-    
-    <form action="form.php" data-ajax="false" method="get">
+    <form action="form.php" data-ajax="false" method="post">
         <?php include('errors.php'); ?>
+        <div class="input-group">
+            
+            <br>Club Name:
+            <input type="text" name="cname" value="<?php echo htmlspecialchars($cname1); ?>" size="30" readonly>
+        </div>
         <div class="input-group">
             <br>Event Name:
             <input type="text" name="ename" size="30">
         </div>
         <div class="input-group">
             <br> Event Date:
-            <input type="text" name="date" size="20">
+            <input type="text" name="date" size="20" placeholder="0000-00-00">
         </div>
         <div class="input-group">
             <br> Description:

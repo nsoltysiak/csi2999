@@ -61,7 +61,7 @@
         <h1>Upcoming Events</h1>
     </div>
     
-    <div style="z-index:-1; margin-top:70px; margin-left: 15px;" class="content">
+    <div style="z-index:-1; margin-top:70px; margin-left: 15px; margin-right: 15px;" class="content">
     
     
     <h1> List of Events </h1>
@@ -104,10 +104,11 @@ $conn->close();
     
     <div data-role="navbar" style="position:fixed; width:100%; bottom:0;">
             <ul>
-                <li><a href="home_page.php">Clubs</a></li>
-                <li><a href="profile.php">Profile</a></li>
-                <li><a href="favorites.php">Favorites</a></li>
-                <li><a href="eventTable.php">Events</a></li>
+                
+                <li><button onclick="location.href='home_page.php'">OU Clubs</button></li>
+                <li><button onclick="location.href='profile.php'">Profile</button></li>
+                <li><button onclick="location.href='favorites.php'">My Clubs</button></li>
+                <li><button onclick="location.href='eventTable.php'">Events</button></li>
             </ul>
         </div><!-- /navbar -->
     

@@ -35,6 +35,11 @@
     if ($resultID->num_rows != 0) {
         while ($rows = $resultID->fetch_assoc()) {
             $cname1 = $rows['clubname'];
+            echo "$cname1";
+            
+            
+            
+            
         }
     }
 

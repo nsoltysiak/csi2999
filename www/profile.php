@@ -91,10 +91,11 @@
     <br>
     <div data-role="navbar" style="position:fixed; width:100%; bottom:0;">
             <ul>
-                <li><a href="home_page.php">Clubs</a></li>
-                <li><a href="profile.php">Profile</a></li>
-                <li><a href="favorites.php">Favorites</a></li>
-                <li><a href="eventTable.php">Events</a></li>
+                
+                <li><button onclick="location.href='home_page.php'">OU Clubs</button></li>
+                <li><button onclick="location.href='profile.php'">Profile</button></li>
+                <li><button onclick="location.href='favorites.php'">My Clubs</button></li>
+                <li><button onclick="location.href='eventTable.php'">Events</button></li>
             </ul>
         </div><!-- /navbar -->
     
