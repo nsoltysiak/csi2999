@@ -12,16 +12,16 @@
 	$ename = mysqli_real_escape_string($conn, $_REQUEST['ename']);
 	$date = mysqli_real_escape_string($conn, $_REQUEST['date']);
 	$description = mysqli_real_escape_string($conn, $_REQUEST['description']);
- <------------- THIS IS THE UPDATED CODE ----------->
-  $now = new DateTime();
+	<----------new code ------------------>
+    $now = date("y/m/d");
      if($date < $now) {
             echo 'Date has passed.';
-            //I'm not sure what kind of errors we want to give but this s how we check the date
-     } <--------------------------------------------------------->
+     }
+    else {
 	$sql = "INSERT INTO events(date, cname, ename, description) VALUES " .
-                "('$date','$cname', '$ename', '$description')";	
-	
-    else if ($conn->query($sql) === TRUE 
+               "('$date','$cname', '$ename', '$description')";	}
+<-------------------------------------------------------------->
+    if ($conn->query($sql) === TRUE)
 	{
         echo "Club Name: " . $_GET['cname'] . "<br>";
     	echo "Event Name: " . $_GET['ename'] . "<br>";
