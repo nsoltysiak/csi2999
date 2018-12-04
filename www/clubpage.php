@@ -166,9 +166,9 @@
             
             echo "<h3 style='margin: 0px 10px 0px 10px;'>Meetings:</h2>";
             
-            echo "<p style='margin: 0px 10px 0px 10px;'>Days: $mtime</p>";
-            echo "<p style='margin: 0px 10px 0px 10px;'>Location: $mdays</p>";
-            echo "<p style='margin: 0px 10px 0px 10px;'>Time: $mlocation</p>";
+            echo "<p style='margin: 0px 10px 0px 10px;'>Time: $mtime</p>";
+            echo "<p style='margin: 0px 10px 0px 10px;'>Days: $mdays</p>";
+            echo "<p style='margin: 0px 10px 0px 10px;'>Location: $mlocation</p>";
             echo "<br><br>";
             
             echo "<h2 style='margin: 0px 10px 0px 10px;'>Events</h2>";
