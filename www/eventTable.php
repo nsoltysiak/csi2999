@@ -81,7 +81,7 @@ die("Connection failed: " . $conn->connect_error);
 }
 // Control reaching here means thread is not dead -- successful connection
 //echo "Connected successfully <br>";
-$sql = "SELECT * FROM events ORDER BY date ASC";
+$sql = "SELECT * FROM events ORDER BY date DESC";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     

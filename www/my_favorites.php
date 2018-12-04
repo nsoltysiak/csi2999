@@ -46,10 +46,7 @@
     <div style="position:fixed; width:100%; z-index:1;" data-role="header">
 
         <h1>Clubs</h1>
-        
-        <button onclick="location.href='newclub.php'">New</button>
-        <button onclick="location.href='search.php'">Search</button>
-
+        <button onclick="location.href='profile.php'">&#8656;</button>
     </div>
 
     
@@ -58,27 +55,32 @@
 <div style="z-index:-1; margin-top:70px;" class="content">
 
     
-    <h2 style="text-align:center;">Oakland University Clubs</h2>
+    <h2 style="text-align:center;">My Favorites</h2>
     
     <?php
     //connect to database
     $mysqli = mysqli_connect('localhost', 'mauricefuentes', 'E1i9s0Z5', 'mauricefuentes');
     
+    $email = $_SESSION['email'];
+    
     //query the database
-    $resultSet = $mysqli->query("SELECT * FROM clubs");
-    
-    
+    $resultSet = $mysqli->query("SELECT * FROM user_favorites WHERE user_email LIKE '$email'");
     
     //count the returned rows
     if ($resultSet->num_rows != 0) {
         while ($rows = $resultSet->fetch_assoc()) {
-            $clubname = $rows['clubname'];
-            $id = $rows['id'];
+            $clubname = $rows['fav_club'];
+            $id = $rows['club_id'];
+            
+            
             
             echo "<div class='clubs'><button onclick=\"location.href='clubpage.php?id=$id'\">$clubname</button></div>";
+            
+            
+            
         }
     } else {
-        echo "No results";
+        echo "<p style='margin-left:15px; margin-right:15px; text-align:center;'>No results. But you can Search for clubs to add to your favorites</p>";
     }
     
     //turn the results into an array
@@ -93,15 +95,6 @@
     
     <br>
     <br>
-    <div data-role="navbar" style="position:fixed; width:100%; bottom:0;">
-            <ul>
-                
-                <li><button onclick="location.href='home_page.php'">OU Clubs</button></li>
-                <li><button onclick="location.href='profile.php'">Profile</button></li>
-                <li><button onclick="location.href='favorites.php'">My Clubs</button></li>
-                <li><button onclick="location.href='eventTable.php'">Events</button></li>
-            </ul>
-        </div><!-- /navbar -->
     
     
 </body>

@@ -67,7 +67,7 @@
             {
                 $club_name = $rows['clubname'];
                 $club_id = $rows['id'];
-                $output .= "<div class='clubs'><a href='clubpage.php?id=$club_id'><button>$club_name</button></a></div>";
+                $output .= "<div class='clubs'><button onclick=\"location.href='clubpage.php?id=$club_id'\">$club_name</button></div>";
             }
         } else {
             $output = "no results";

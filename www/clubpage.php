@@ -60,6 +60,8 @@
     
     $myVar = $_REQUEST['id'];
     
+    
+    
     $query = "SELECT * FROM clubs WHERE id='$myVar'";
     $resultID = mysqli_query($mysqli, $query);
     
@@ -93,6 +95,7 @@
             
             $flink = $rows['facebooklink'];
             $sprocess = $rows['selectionprocess'];
+            $myself = $_SESSION['email'];
             
             $id = $rows['id'];
             
@@ -100,7 +103,42 @@
                 echo "<p style='text-align:center;'><img width='100' height='100' src='club_default1.png' align='middle' alt='Default Picture'></p>";
             }
             echo "<h1 style='text-align:center;'>$clubname</h1>";
+            
+            //favorites button here
+            //echo "<div class='clubs'><button onclick=\"location.href=''\">Add to Favorites</button></div>";
+            
+            
+            
+            $resultSet11 = $mysqli->query("SELECT * FROM user_favorites WHERE fav_club ='$clubname'");
+    
+            if ($resultSet11->num_rows != 0) {
+                while ($rows = $resultSet11->fetch_assoc()) {
+                    $the_club = $rows['fav_club'];
+                    $the_user = $rows['user_email'];
+            
+                    if (($clubname == $the_club)&&($myself == $the_user)) {
+                        echo "<p style='text-align:center; color: #FACC2E'>This is club is in your favorites!</p>";
+                        echo "<form method=\"post\" data-ajax=\"false\" action=\"fav_server.php\">";
+                        echo "<input type=\"hidden\" name=\"did\" value=\"$id\" size=\"30\" readonly>";
+                        echo "<input type=\"hidden\" name=\"dcname\" value=\"$clubname\" size=\"30\" readonly>";
+                        echo "<button type=\"submit\" class=\"btn\" name=\"delete_fav\">Delete from Favorites</button></form>";
+                    }
+                }
+            } else {
+                
+                echo "<form method=\"post\" data-ajax=\"false\" action=\"fav_server.php\">";
+                echo "<input type=\"hidden\" name=\"id\" value=\"$id\" size=\"30\" readonly>";
+                echo "<input type=\"hidden\" name=\"cname\" value=\"$clubname\" size=\"30\" readonly>";
+                echo "<button type=\"submit\" class=\"btn\" name=\"add_fav\">Add to Favorites</button></form>";
+            }
+                
+            echo "<br>";
+        
+            
             echo "<h2 style='margin: 0px 10px 0px 10px;'>Club Description:</h2>";
+            
+            
+            
             echo "<br>";
             echo "<p style='margin: 0px 10px 0px 10px;'>$description</p>";
             echo "<br>";
@@ -148,13 +186,16 @@
                     echo "<p style='margin-top:-15px; margin-left: 10px; margin-right: 10px;'>" . $row["description"] . "</p>";
                 }
             } else {
-                echo "No Event Records Found. <br>";
+                echo "<p style='text-align:center;'>No Event Found</p> <br>";
             }
             
         }
     } else {
         echo "No results";
     }
+    
+    
+    
     ?>
     
     <br>

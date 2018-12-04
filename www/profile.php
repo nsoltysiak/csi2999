@@ -87,6 +87,10 @@
     	<p class="logout"> <a href="home_page.php?logout='1'" style="color: red; padding:10px; background-color: pink;">logout</a> </p>
     <?php endif ?>
     
+    <?php
+    echo "<div class='clubs'><button onclick=\"location.href='my_favorites.php'\">Your Favorites</button></div>";
+    ?>
+    
     <br>
     <br>
     <div data-role="navbar" style="position:fixed; width:100%; bottom:0;">

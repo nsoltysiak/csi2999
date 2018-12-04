@@ -171,12 +171,11 @@ if (isset($_POST['new_event'])) {
     </div>
     <br>
     
-    <form action="form.php" data-ajax="false" method="post">
+    <form action="form.php" data-ajax="false" method="post" id="events">
         <?php include('errors.php'); ?>
         <div class="input-group">
             
-            <br>Club Name:
-            <input type="text" name="cname" value="<?php echo htmlspecialchars($cname1); ?>" size="30" readonly>
+            <input type="hidden" name="cname" value="<?php echo htmlspecialchars($cname1); ?>" size="30" readonly>
         </div>
         <div class="input-group">
             <br>Event Name:
@@ -184,7 +183,7 @@ if (isset($_POST['new_event'])) {
         </div>
         <div class="input-group">
             <br> Event Date:
-            <input type="text" name="date" size="20" placeholder="0000-00-00">
+            <input type="date" name="date" id="date" size="20" placeholder="0000-00-00" required>
         </div>
         <div class="input-group">
             <br> Description:
@@ -192,10 +191,25 @@ if (isset($_POST['new_event'])) {
             <br>
         </div>
         <div class="input-group">
-            <button type="submit" class="btn" name="new_event">Save Event</button>
+            <button type="submit" class="btn" onclick=checkTheDate() name="new_event">Save Event</button>
             <input type="reset" value="Clear Data Fields">
             </div>
     </form>    
+    
+    <script>
+        function checkTheDate() {
+            var today = new Date();
+            var input = document.getElementById("date").value;
+            input = new Date(input);
+            if (input < today) {
+                alert("Date has passed. Please enter a valid date.");
+                document.getElementById("events").reset();
+                return false;
+            } 
+        }
+
+    </script>
+    
 </body>
 
 </html>

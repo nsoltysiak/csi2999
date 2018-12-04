@@ -71,8 +71,8 @@
         while ($rows = $resultSet->fetch_assoc()) {
             $clubname = $rows['clubname'];
             $id = $rows['id'];
-            echo "<div class='clubs'><a href='users_club.php?id=$id'><button>$clubname</button></a></div>";
-            echo "<button onclick='location.href='home_page.php''>OU Clubs</button>";
+            
+            echo "<div class='clubs'><button onclick=\"location.href='users_club.php?id=$id'\">$clubname</button></div>";
             
             
             

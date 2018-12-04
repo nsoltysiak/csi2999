@@ -171,7 +171,8 @@
         while ($rows = $resultSetNC->fetch_assoc()) {
             $clubname = $rows['clubname'];
             $idNC = $rows['id'];
-            echo "<div class='clubs'><a href='form.php?id=$idNC'><button>Create New Event</button></a></div>";
+            
+            echo "<div class='clubs'><button onclick=\"location.href='form.php?id=$idNC'\">Create New Event</button></div>";
         }
     } else {
         echo "No results";
