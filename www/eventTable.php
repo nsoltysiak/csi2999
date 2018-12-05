@@ -90,6 +90,8 @@ while($row = $result->fetch_assoc()) {
     echo "<h2>" . $row["ename"] . "</h2>";
     echo "<h3 style='margin-top:-15px;'>" . $row["cname"] . "</h3>";
     echo "<h4 style='margin-top:-15px;'>" . $row["date"] . "</h4>";
+    echo "<h4 style='margin-top:-15px;'>" . $row["time"] . "</h4>";
+    echo "<h4 style='margin-top:-15px;'>" . $row["elocation"] . "</h4>";
     echo "<p style='margin-top:-15px;'>" . $row["description"] . "</p>";
     echo "<br>";
 }
