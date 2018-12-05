@@ -164,13 +164,18 @@
             echo "<p style='margin: 0px 10px 0px 10px;'>Email: $advisore</p>";
             echo "<br>";
             
-            echo "<h3 style='margin: 0px 10px 0px 10px;'>Meetings:</h2>";
+            echo "<h3 style='margin: 0px 10px 0px 10px;'>Meetings:</h3>";
             
             echo "<p style='margin: 0px 10px 0px 10px;'>Time: $mtime</p>";
             echo "<p style='margin: 0px 10px 0px 10px;'>Days: $mdays</p>";
             echo "<p style='margin: 0px 10px 0px 10px;'>Location: $mlocation</p>";
-            echo "<br><br>";
-            
+            echo "<br>";
+		
+            echo "<h4 style='margin: 0px 10px 0px 10px;'>More Information:</h4>";
+		
+            echo "<p style='margin: 0px 10px 0px 10px;'>Facebook Link: $flink</p>";
+	    echo "<p style='margin: 0px 10px 0px 10px;'>Selection Process: $sprocess</p>";
+		
             echo "<h2 style='margin: 0px 10px 0px 10px;'>Events</h2>";
             
             $query1 = "SELECT * FROM events WHERE cname ='$clubname'";
