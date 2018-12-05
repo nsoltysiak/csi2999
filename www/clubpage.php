@@ -45,8 +45,8 @@
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     
-    <div style="position:fixed; width:100%;" data-role="header">
-        <button onclick="location.href='home_page.php'">&#8656;</button>
+    <div style="position:fixed; width:100%; z-index:1;" data-role="header">
+        <button onclick="history.back()">&#8656;</button>
         <h1>Oakland University</h1>
     </div>
 <div class="header">
@@ -109,7 +109,7 @@
             
             
             
-            $resultSet11 = $mysqli->query("SELECT * FROM user_favorites WHERE fav_club ='$clubname'");
+            $resultSet11 = $mysqli->query("SELECT * FROM user_favorites WHERE fav_club ='$clubname' AND user_email = '$myself'");
     
             if ($resultSet11->num_rows != 0) {
                 while ($rows = $resultSet11->fetch_assoc()) {
@@ -117,58 +117,74 @@
                     $the_user = $rows['user_email'];
             
                     if (($clubname == $the_club)&&($myself == $the_user)) {
-                        echo "<p style='text-align:center; color: #FACC2E'>This is club is in your favorites!</p>";
+                        
                         echo "<form method=\"post\" data-ajax=\"false\" action=\"fav_server.php\">";
-                        echo "<input type=\"hidden\" name=\"did\" value=\"$id\" size=\"30\" readonly>";
-                        echo "<input type=\"hidden\" name=\"dcname\" value=\"$clubname\" size=\"30\" readonly>";
-                        echo "<button type=\"submit\" class=\"btn\" name=\"delete_fav\">Delete from Favorites</button></form>";
+                        echo "<input type=\"text\" name=\"did\" value=\"$id\" size=\"30\" readonly>";
+                        echo "<input type=\"text\" name=\"dcname\" value=\"$clubname\" size=\"30\" readonly>";
+                        echo "<div style=\"text-align:center;\">";
+                        
+                        
+                        
+                        echo"<p style=\"color:#848484; padding-right: 5px;\"><b>In your Favorites</b></p>";
+                        
+                        echo "<button style=\"margin-top: -10px; background-color:#F6D8CE;\" type=\"submit\" class=\"btn\" name=\"delete_fav\" data-icon=\"delete\" data-inline=\"true\" data-mini=\"true\">Remove</button></form>";
+                        
+                        echo "</div>";
+                        break;
+                    } else {
+                        echo "<form method=\"post\" data-ajax=\"false\" action=\"fav_server.php\">";
+                        echo "<input type=\"hidden\" name=\"id\" value=\"$id\" size=\"30\" readonly>";
+                        echo "<input type=\"hidden\" name=\"cname\" value=\"$clubname\" size=\"30\" readonly>";
+                        echo "<button style=\"color: white; background-color:#848484;\" type=\"submit\" class=\"btn\" name=\"add_fav\" data-icon=\"plus\" data-iconpos=\"right\">Add to Favorites</button></form>";
                     }
                 }
             } else {
-                
                 echo "<form method=\"post\" data-ajax=\"false\" action=\"fav_server.php\">";
-                echo "<input type=\"hidden\" name=\"id\" value=\"$id\" size=\"30\" readonly>";
-                echo "<input type=\"hidden\" name=\"cname\" value=\"$clubname\" size=\"30\" readonly>";
-                echo "<button type=\"submit\" class=\"btn\" name=\"add_fav\">Add to Favorites</button></form>";
+                echo "<input type=\"text\" name=\"id\" value=\"$id\" size=\"30\" readonly>";
+                echo "<input type=\"text\" name=\"cname\" value=\"$clubname\" size=\"30\" readonly>";
+                echo "<button style=\"color: white; background-color:#848484;\" type=\"submit\" class=\"btn\" name=\"add_fav\" data-icon=\"plus\" data-iconpos=\"right\">Add to Favorites</button></form>";
+                
             }
                 
             echo "<br>";
         
             
-            echo "<h2 style='margin: 0px 10px 0px 10px;'>Club Description:</h2>";
+            echo "<div style=\"color: black; background-color:#E6E6E6; margin: 0px 10px 2px 10px; padding: 1px 8px 1px 8px; border: 1px solid gray; border-radius: 15px;\">";
+            
+            echo "<h2>Club Description:</h2>";
             
             
             
+            //echo "<br>";
+            echo "<p>$description</p>";
+            
+            
+            
+            echo "<h3>Officers:</h2>";
+            
+            echo "<p>President: $presidentf $presidentl<br>";
+            echo "Email: $presidente</p>";
+            
+            echo "<p>Vice President: $vpresidentf $vpresidentl<br>";
+            echo "Email: $vpresidente</p>";
+            
+            echo "<p>Treasurer: $treasurerf $treasurerl<br>";
+            echo "Email: $treasurere</p>";
+            
+            echo "<p>Secretary: $secretaryf $secretaryl<br>";
+            echo "Email: $secretarye</p>";
+            
+            echo "<p>Advisor: $advisorf $advisorl<br>";
+            echo "Email: $advisore</p>";
+            echo "</div>";
             echo "<br>";
-            echo "<p style='margin: 0px 10px 0px 10px;'>$description</p>";
-            echo "<br>";
-            echo "<h3 style='margin: 0px 10px 0px 10px;'>Officers:</h2>";
             
-            echo "<p style='margin: 0px 10px 0px 10px;'>President: $presidentf $presidentl</p>";
-            echo "<p style='margin: 0px 10px 0px 10px;'>Email: $presidente</p>";
-            echo "<br>";
             
-            echo "<p style='margin: 0px 10px 0px 10px;'>Vice President: $vpresidentf $vpresidentl</p>";
-            echo "<p style='margin: 0px 10px 0px 10px;'>Email: $vpresidente</p>";
-            echo "<br>";
+            echo "<h3 style='text-align:center;'>Meetings:</h2>";
             
-            echo "<p style='margin: 0px 10px 0px 10px;'>Treasurer: $treasurerf $treasurerl</p>";
-            echo "<p style='margin: 0px 10px 0px 10px;'>Email: $treasurere</p>";
-            echo "<br>";
-            
-            echo "<p style='margin: 0px 10px 0px 10px;'>Secretary: $secretaryf $secretaryl</p>";
-            echo "<p style='margin: 0px 10px 0px 10px;'>Email: $secretarye</p>";
-            echo "<br>";
-            
-            echo "<p style='margin: 0px 10px 0px 10px;'>Advisor: $advisorf $advisorl</p>";
-            echo "<p style='margin: 0px 10px 0px 10px;'>Email: $advisore</p>";
-            echo "<br>";
-            
-            echo "<h3 style='margin: 0px 10px 0px 10px;'>Meetings:</h2>";
-            
-            echo "<p style='margin: 0px 10px 0px 10px;'>Time: $mtime</p>";
-            echo "<p style='margin: 0px 10px 0px 10px;'>Days: $mdays</p>";
-            echo "<p style='margin: 0px 10px 0px 10px;'>Location: $mlocation</p>";
+            echo "<p style='text-align:center;'><b>Time:</b> $mtime<br>";
+            echo "<b>Days:</b> $mdays<br>";
+            echo "<b>Location:</b> $mlocation</p>";
             echo "<br><br>";
             
             echo "<h2 style='margin: 0px 10px 0px 10px;'>Events</h2>";

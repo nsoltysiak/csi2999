@@ -35,9 +35,9 @@ if (isset($_POST['add_fav'])) {
                 $query9 = "INSERT INTO user_favorites (user_email, fav_club, club_id) 
   			  VALUES('$owner', '$clubname', '$id')";
   	mysqli_query($db, $query9);
-      header('location: my_favorites.php');
+      header('location: home_page.php');
   } else {
-      header('location: my_favorites.php');
+      header('location: home_page.php');
                 }
 }
 
@@ -47,5 +47,5 @@ if (isset($_POST['delete_fav'])) {
     $myself1 = $_SESSION['email'];
     
     $resultSet12 = $db->query("DELETE FROM user_favorites WHERE fav_club='$clubname' AND user_email='$myself1'");
-    header('location: my_favorites.php');
+    header('location: home_page.php');
 }

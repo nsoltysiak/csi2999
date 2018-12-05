@@ -88,7 +88,7 @@
     <?php endif ?>
     
     <?php
-    echo "<div class='clubs'><button onclick=\"location.href='my_favorites.php'\">Your Favorites</button></div>";
+    echo "<div class='clubs'><button style=\"color: black; background-color:#D8D8D8;\" onclick=\"location.href='my_favorites.php'\">My Favorites</button></div>";
     ?>
     
     <br>
@@ -96,10 +96,10 @@
     <div data-role="navbar" style="position:fixed; width:100%; bottom:0;">
             <ul>
                 
-                <li><button onclick="location.href='home_page.php'">OU Clubs</button></li>
-                <li><button onclick="location.href='profile.php'">Profile</button></li>
-                <li><button onclick="location.href='favorites.php'">My Clubs</button></li>
-                <li><button onclick="location.href='eventTable.php'">Events</button></li>
+                <li><button style="color: white; background-color:#585858;" onclick="location.href='home_page.php'" data-icon="home" data-iconpos="top" data-role="button" data-theme="a">OU Clubs</button></li>
+                <li><button style="color: white; background-color:#585858;" onclick="location.href='profile.php'" data-icon="gear" data-iconpos="top" data-theme="a">Profile</button></li>
+                <li><button style="color: white; background-color:#585858;" onclick="location.href='favorites.php'" data-icon="star" data-iconpos="top" data-theme="a">My Clubs</button></li>
+                <li><button style="color: white; background-color:#585858;" onclick="location.href='eventTable.php'" data-icon="grid" data-iconpos="top" data-theme="a">Events</button></li>
             </ul>
         </div><!-- /navbar -->
     

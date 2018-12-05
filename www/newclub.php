@@ -43,7 +43,7 @@
     <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     
     <div style="position:fixed; width:100%;" data-role="header">
-        <button onclick="location.href='home_page.php'">&#8656;</button>
+        <button onclick="history.back()">&#8656;</button>
         <h1>Create new Club</h1>
     </div>
     <br>
@@ -72,7 +72,7 @@
   	  <input type="text" name="presidentfirst" value="">
   	</div>
   	<div class="input-group">
-  	  <label>President's First Name:</label>
+  	  <label>President's Last Name:</label>
   	  <input type="text" name="presidentlast" value="">
   	</div>
       <div class="input-group">

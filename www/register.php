@@ -42,8 +42,9 @@
   	  <button type="submit" class="btn" name="reg_user">Register</button>
   	</div>
   	<p>
-  		Already a member? <a href="login.php">Sign in</a>
+  		Already a member? 
   	</p>
+      <button onclick="location.href='login.php'">Sign in</button>
   </form>
 </body>
 </html>

@@ -73,20 +73,20 @@ if (isset($_POST['new_event'])) {
     $cname = mysqli_real_escape_string($conn, $_POST['cname']);
     $ename = mysqli_real_escape_string($conn, $_POST['ename']);
     $edate = mysqli_real_escape_string($conn, $_POST['date']);
-    	$etime = mysqli_real_escape_string($conn, $_POST['time']);
-    	$elocation = mysqli_real_escape_string($conn, $_POST['elocation']);
+    $etime = mysqli_real_escape_string($conn, $_POST['time']);
+    $elocation = mysqli_real_escape_string($conn, $_POST['location']);
     $edescription = mysqli_real_escape_string($conn, $_POST['description']);
 	
     if (empty($ename)) { array_push($errors, "name is required"); }
     if (empty($edate)) { array_push($errors, "date is required"); }
-	if (empty($etime)) { array_push($errors, "time is required"); }
+    if (empty($etime)) { array_push($errors, "time is required"); }
 	if (empty($elocation)) { array_push($errors, "location is required"); }
     if (empty($edescription)) { array_push($errors, "description is required"); }
     
     if (count($errors) == 0) {
 
 	   $sql = "INSERT INTO events(date, time, elocation, cname, ename, description) VALUES " .
-                "('$edate','$etime','$elocation','$cname', '$ename', '$edescription')";	
+                "('$edate','$etime','$elocation', '$cname', '$ename', '$edescription')";	
     
         mysqli_query($conn, $sql);
         
@@ -170,7 +170,7 @@ if (isset($_POST['new_event'])) {
     
     
     <div style="position:fixed; width:100%;" data-role="header">
-        <button onclick="location.href='favorites.php'">&#8656;</button>
+        <button onclick="history.back()">&#8656;</button>
         <h1>Create new Event</h1>
     </div>
     <br>
@@ -189,17 +189,20 @@ if (isset($_POST['new_event'])) {
             <br> Event Date:
             <input type="date" name="date" id="date" size="20" placeholder="0000-00-00" required>
         </div>
-	    <div class="input-group">
+        <div class="input-group">
             <br> Event Time:
             <input type="time" name="time" id="time" size="20" placeholder="00:00:00" required>
         </div>
 	<div class="input-group">
             <br> Event Location:
-            <input type="text" name="elocation" size="30" required>
+            <input type="text" name="location" size="30" required>
         </div>
         <div class="input-group">
             <br> Description:
+            <textarea name="description" cols="55"></textarea>
+            <!--
             <input type="text" name="description" size="200">
+            -->
             <br>
         </div>
         <div class="input-group">
@@ -214,7 +217,7 @@ if (isset($_POST['new_event'])) {
             var input = document.getElementById("date").value;
             input = new Date(input);
             if (input < today) {
-                alert("Selected date has passed. Please enter a valid date.");
+                alert("Date has passed. Please enter a valid date.");
                 document.getElementById("events").reset();
                 return false;
             } 

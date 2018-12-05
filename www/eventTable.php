@@ -64,14 +64,15 @@
     <div style="z-index:-1; margin-top:70px; margin-left: 15px; margin-right: 15px;" class="content">
     
     
-    <h1> List of Events </h1>
+    <h2 style="text-align:center;"> List of Events </h2>
+        <p style="text-align:center; font-size:12px;">these are the upcoming events in Oakland University</p>
     <?php
 $servername = "localhost"; // Will typically be localhost since PHP and MySQL
 // will be running on the same server
 $username = "mauricefuentes"; // Your username
 $password = "E1i9s0Z5"; // Your password
 $dbname = "mauricefuentes"; // Your database name
-
+$email = $_SESSION['email'];
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -79,20 +80,30 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
 die("Connection failed: " . $conn->connect_error);
 }
+        
+$resultSet = $conn->query("SELECT * FROM user_favorites WHERE user_email LIKE '$email'");
+if ($resultSet->num_rows != 0) {
+        while ($rows = $resultSet->fetch_assoc()) {
+            $clubname = $rows['fav_club'];
+        }
+}
+
 // Control reaching here means thread is not dead -- successful connection
 //echo "Connected successfully <br>";
-$sql = "SELECT * FROM events ORDER BY date DESC";
+$sql = "SELECT * FROM events";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     
 while($row = $result->fetch_assoc()) {
     
+    echo "<div style=\"color: black; background-color:#E6E6E6; padding: 1px 8px 1px 8px; border: 1px solid gray; border-radius: 15px;\">";
     echo "<h2>" . $row["ename"] . "</h2>";
-    echo "<h3 style='margin-top:-15px;'>" . $row["cname"] . "</h3>";
-    echo "<h4 style='margin-top:-15px;'>" . $row["date"] . "</h4>";
-    echo "<h4 style='margin-top:-15px;'>" . $row["time"] . "</h4>";
-    echo "<h4 style='margin-top:-15px;'>" . $row["elocation"] . "</h4>";
+    echo "<h3 style='margin-top:-15px;'>By: " . $row["cname"] . "</h3>";
     echo "<p style='margin-top:-15px;'>" . $row["description"] . "</p>";
+    echo "<h4 style='margin-top:-5px;'>Day: " . $row["date"] . "</h4>";
+    echo "<h4 style='margin-top:-15px;'>Time: " . $row["time"] . "</h4>";
+    echo "<h4 style='margin-top:-15px;'>Location: " . $row["elocation"] . "</h4>";
+    echo "</div>";
     echo "<br>";
 }
     
@@ -103,14 +114,17 @@ $conn->close();
 ?>
     
     </div>
-    
-    <div data-role="navbar" style="position:fixed; width:100%; bottom:0;">
+    <br>
+    <br>
+    <br>
+    <br>
+    <div data-role="navbar" data-theme="a" style="position:fixed; width:100%; bottom:0;">
             <ul>
                 
-                <li><button onclick="location.href='home_page.php'">OU Clubs</button></li>
-                <li><button onclick="location.href='profile.php'">Profile</button></li>
-                <li><button onclick="location.href='favorites.php'">My Clubs</button></li>
-                <li><button onclick="location.href='eventTable.php'">Events</button></li>
+                <li><button style="color: white; background-color:#585858;" onclick="location.href='home_page.php'" data-icon="home" data-iconpos="top" data-role="button" data-theme="a">OU Clubs</button></li>
+                <li><button style="color: white; background-color:#585858;" onclick="location.href='profile.php'" data-icon="gear" data-iconpos="top" data-theme="a">Profile</button></li>
+                <li><button style="color: white; background-color:#585858;" onclick="location.href='favorites.php'" data-icon="star" data-iconpos="top" data-theme="a">My Clubs</button></li>
+                <li><button style="color: white; background-color:#585858;" onclick="location.href='eventTable.php'" data-icon="grid" data-iconpos="top" data-theme="a">Events</button></li>
             </ul>
         </div><!-- /navbar -->
     

@@ -50,7 +50,7 @@
     
 <div class="header">
     <div style="position:fixed; width:100%;" data-role="header">
-        <button onclick="location.href='favorites.php'">&#8656;</button>
+        <button onclick="history.back()">&#8656;</button>
         <h1>Oakland University</h1>
     </div>
     
@@ -131,9 +131,9 @@
             
             echo "<h3 style='margin: 0px 10px 0px 10px;'>Meetings:</h2>";
             
-            echo "<p style='margin: 0px 10px 0px 10px;'>Days: $mtime</p>";
-            echo "<p style='margin: 0px 10px 0px 10px;'>Location: $mdays</p>";
-            echo "<p style='margin: 0px 10px 0px 10px;'>Time: $mlocation</p>";
+            echo "<p style='margin: 0px 10px 0px 10px;'>Time: $mtime</p>";
+            echo "<p style='margin: 0px 10px 0px 10px;'>Days: $mdays</p>";
+            echo "<p style='margin: 0px 10px 0px 10px;'>Location: $mlocation</p>";
             echo "<br>";
             echo "<br>";
             echo "<h2 style='margin: 0px 10px 0px 10px;'>Events</h2>";
@@ -151,7 +151,7 @@
                     echo "<p style='margin-top:-15px; margin-left: 10px; margin-right: 10px;'>" . $row["description"] . "</p>";
                 }
             } else {
-                echo "No Event Records Found. <br>";
+                echo "<p style='text-align:center;'>No Event Found</p>";
             }
             
         }
@@ -172,7 +172,7 @@
             $clubname = $rows['clubname'];
             $idNC = $rows['id'];
             
-            echo "<div class='clubs'><button onclick=\"location.href='form.php?id=$idNC'\">Create New Event</button></div>";
+            echo "<div class='clubs'><button style=\"color: white; background-color:#585858;\" onclick=\"location.href='form.php?id=$idNC'\">Create New Event</button></div><br><br>";
         }
     } else {
         echo "No results";

@@ -54,7 +54,38 @@
 </div>
 <div style="z-index:-1; margin-top:70px;" class="content">
 
+    <h2 style="text-align:center;">Clubs you Favorited</h2>
     
+    <?php
+    //connect to database
+    $mysqli3 = mysqli_connect('localhost', 'mauricefuentes', 'E1i9s0Z5', 'mauricefuentes');
+    
+    $email = $_SESSION['email'];
+    
+    //query the database
+    $resultSet3 = $mysqli3->query("SELECT * FROM user_favorites WHERE user_email LIKE '$email'");
+    
+    //count the returned rows
+    if ($resultSet3->num_rows != 0) {
+        while ($rows = $resultSet3->fetch_assoc()) {
+            $clubname = $rows['fav_club'];
+            $id = $rows['club_id'];
+            
+            
+            
+            echo "<div class='clubs'><button style=\"color: black; background-color:#D8D8D8;\" onclick=\"location.href='clubpage.php?id=$id'\">$clubname</button></div>";
+            
+            
+            
+        }
+    } else {
+        echo "<p style='margin-left:15px; margin-right:15px; text-align:center;'>No results. But you can Search for clubs to add to your favorites</p>";
+    }
+    
+    ?>
+    
+    <br>
+    <br>
     <h2 style="text-align:center;">Clubs you Created</h2>
     
     <?php
@@ -72,7 +103,7 @@
             $clubname = $rows['clubname'];
             $id = $rows['id'];
             
-            echo "<div class='clubs'><button onclick=\"location.href='users_club.php?id=$id'\">$clubname</button></div>";
+            echo "<div class='clubs'><button style=\"color: black; background-color:#D8D8D8;\" onclick=\"location.href='users_club.php?id=$id'\">$clubname</button></div>";
             
             
             
@@ -93,13 +124,15 @@
     
     <br>
     <br>
+    <br>
+    <br>
     <div data-role="navbar" style="position:fixed; width:100%; bottom:0;">
             <ul>
                 
-                <li><button onclick="location.href='home_page.php'">OU Clubs</button></li>
-                <li><button onclick="location.href='profile.php'">Profile</button></li>
-                <li><button onclick="location.href='favorites.php'">My Clubs</button></li>
-                <li><button onclick="location.href='eventTable.php'">Events</button></li>
+                <li><button style="color: white; background-color:#585858;" onclick="location.href='home_page.php'" data-icon="home" data-iconpos="top" data-role="button" data-theme="a">OU Clubs</button></li>
+                <li><button style="color: white; background-color:#585858;" onclick="location.href='profile.php'" data-icon="gear" data-iconpos="top" data-theme="a">Profile</button></li>
+                <li><button style="color: white; background-color:#585858;" onclick="location.href='favorites.php'" data-icon="star" data-iconpos="top" data-theme="a">My Clubs</button></li>
+                <li><button style="color: white; background-color:#585858;" onclick="location.href='eventTable.php'" data-icon="grid" data-iconpos="top" data-theme="a">Events</button></li>
             </ul>
         </div><!-- /navbar -->
     

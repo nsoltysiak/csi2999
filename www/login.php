@@ -32,8 +32,9 @@
   		<button type="submit" class="btn" name="login_user">Login</button>
   	</div>
   	<p>
-  		Not yet a member? <a href="register.php">Sign up</a>
+  		Not yet a member? 
   	</p>
+      <button onclick="location.href='register.php'">Sign up</button>
   </form>
 </body>
 </html>

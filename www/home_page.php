@@ -47,8 +47,8 @@
 
         <h1>Clubs</h1>
         
-        <button onclick="location.href='newclub.php'">New</button>
-        <button onclick="location.href='search.php'">Search</button>
+        <button onclick="location.href='newclub.php'" data-icon="plus" data-iconpos="left">New</button>
+        <button onclick="location.href='search.php'" data-icon="search" data-iconpos="right">Search</button>
 
     </div>
 
@@ -67,15 +67,38 @@
     //query the database
     $resultSet = $mysqli->query("SELECT * FROM clubs");
     
-    
-    
     //count the returned rows
     if ($resultSet->num_rows != 0) {
         while ($rows = $resultSet->fetch_assoc()) {
             $clubname = $rows['clubname'];
             $id = $rows['id'];
             
-            echo "<div class='clubs'><button onclick=\"location.href='clubpage.php?id=$id'\">$clubname</button></div>";
+            //HERE STARTS THE CODE I COPYED AND PASTED
+            
+            $useremail = $_SESSION['email'];
+    
+            //query the database
+            $resultSet31 = $mysqli->query("SELECT * FROM user_favorites WHERE user_email LIKE '$useremail' AND fav_club LIKE '$clubname'");
+    
+            //count the returned rows
+            if ($resultSet31->num_rows != 0) {
+                while ($rows = $resultSet31->fetch_assoc()) {
+                    $favclubname = $rows['fav_club'];
+                    $favid = $rows['club_id'];
+                    
+                    if ($favclubname == $clubname) {
+                        echo "<div class='clubs'><button style=\"color: black; background-color:#D8D8D8;\" onclick=\"location.href='clubpage.php?id=$id'\" data-icon=\"star\">$clubname</button></div>";
+                    } else {
+                        
+                    }
+                }
+            } else {
+                echo "<div class='clubs'><button style=\"color: black; background-color:#D8D8D8;\" onclick=\"location.href='clubpage.php?id=$id'\">$clubname</button></div>";
+            }
+            
+            //IT ENDS HERE!!!--------------------------
+            
+            //echo "<div class='clubs'><button onclick=\"location.href='clubpage.php?id=$id'\">$clubname</button></div>";
         }
     } else {
         echo "No results";
@@ -93,13 +116,15 @@
     
     <br>
     <br>
+    <br>
+    <br>
     <div data-role="navbar" style="position:fixed; width:100%; bottom:0;">
             <ul>
                 
-                <li><button onclick="location.href='home_page.php'">OU Clubs</button></li>
-                <li><button onclick="location.href='profile.php'">Profile</button></li>
-                <li><button onclick="location.href='favorites.php'">My Clubs</button></li>
-                <li><button onclick="location.href='eventTable.php'">Events</button></li>
+                <li><button style="color: white; background-color:#585858;" onclick="location.href='home_page.php'" data-icon="home" data-iconpos="top" data-role="button" data-theme="a">OU Clubs</button></li>
+                <li><button style="color: white; background-color:#585858;" onclick="location.href='profile.php'" data-icon="gear" data-iconpos="top" data-theme="a">Profile</button></li>
+                <li><button style="color: white; background-color:#585858;" onclick="location.href='favorites.php'" data-icon="star" data-iconpos="top" data-theme="a">My Clubs</button></li>
+                <li><button style="color: white; background-color:#585858;" onclick="location.href='eventTable.php'" data-icon="grid" data-iconpos="top" data-theme="a">Events</button></li>
             </ul>
         </div><!-- /navbar -->
     
